@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd code
+cd cominisatps
+cd simp
+MROOT=.. make clean libr
+cd ../..
+
+cd uwrmaxsat
+USESCIP= MAXPRE=  make distclean config r
+cp -p build/release/bin/uwrmaxsat ../../bin/
+rm -rf build
+cd ../..

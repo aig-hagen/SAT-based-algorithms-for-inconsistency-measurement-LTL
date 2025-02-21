@@ -1,0 +1,26 @@
+diff -urB --no-dereference v1/code/cominisatps/core/Solver.cc v2/code/cominisatps/core/Solver.cc
+--- v1/code/cominisatps/core/Solver.cc	2020-07-17 09:34:07.000000000 +0200
++++ v2/code/cominisatps/core/Solver.cc	2022-07-12 15:33:27.000000000 +0200
+@@ -117,6 +117,8 @@
+   , conflict_budget    (-1)
+   , propagation_budget (-1)
+   , asynch_interrupt   (false)
++  , termCallbackState  (nullptr)
++  , termCallback       (nullptr)
+ {}
+ 
+ 
+diff -urB --no-dereference v1/code/cominisatps/core/Solver.h v2/code/cominisatps/core/Solver.h
+--- v1/code/cominisatps/core/Solver.h	2022-04-22 09:48:23.000000000 +0200
++++ v2/code/cominisatps/core/Solver.h	2022-07-12 15:34:29.000000000 +0200
+@@ -527,8 +527,8 @@
+ inline void     Solver::toDimacs     (const char* file, Lit p, Lit q){ vec<Lit> as; as.push(p); as.push(q); toDimacs(file, as); }
+ inline void     Solver::toDimacs     (const char* file, Lit p, Lit q, Lit r){ vec<Lit> as; as.push(p); as.push(q); as.push(r); toDimacs(file, as); }
+ // IPASIR
+-void Solver::setTermCallback(void *state, int (*termCallback)(void *)) {
+-    termCallbackState = state; termCallback = termCallback; }
++void Solver::setTermCallback(void *state, int (*termcallback)(void *)) {
++    termCallbackState = state; termCallback = termcallback; }
+ 
+ //=================================================================================================
+ // Debug etc:

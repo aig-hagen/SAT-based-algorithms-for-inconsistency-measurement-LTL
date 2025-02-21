@@ -1,0 +1,14 @@
+#!/bin/bash
+wl=3600
+mem=32768
+
+echo "c [MSE2022] -- begin -- [MSE2022]"
+xz -cdk $1 > maxsat.wcnf
+./run --timestamp -d 10 -o output.out -v output.var -w output.wat -C $wl -W $wl -M $mem ./maxhs -no-printOptions -printSoln -verb=0 maxsat.wcnf
+cat output.out
+cat output.var
+rm -f maxsat.wcnf
+rm -f output.out
+rm -f output.var
+rm -f output.wat
+echo "c [MSE2022] -- end -- [MSE2022]"
